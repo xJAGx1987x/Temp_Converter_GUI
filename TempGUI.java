@@ -53,15 +53,20 @@ public class TempGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inputUnits = (String) inputUnitsComboBox.getSelectedItem();
                 String outputUnits = (String) outputUnitsComboBox.getSelectedItem();
-                double temperature = Double.parseDouble(tempTextField.getText());
+                double temperature;
+                double result;
                 try {
                     temperature = Double.parseDouble(tempTextField.getText());
                 } catch (NumberFormatException exception) {
                     resultTextField.setText("Invalid input.");
                     return;
                 }
-                double result = TempConverter.convertAll(inputUnits, outputUnits, temperature);
-                resultTextField.setText(String.format("%.2f", result));
+                if (TempConverter.isValidTemp(inputUnits, temperature)) {
+                    result = TempConverter.convertAll(inputUnits, outputUnits, temperature);
+                    resultTextField.setText(String.format("%.2f", result));
+                } else {
+                    resultTextField.setText("Invalid temperature.");
+                }
             }
         });
 
@@ -88,5 +93,3 @@ public class TempGUI extends JFrame {
         gui.setVisible(true);
     }
 }
-
-

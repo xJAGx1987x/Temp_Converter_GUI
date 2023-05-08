@@ -3,41 +3,39 @@ public class TempConverter {
     public static double convertAll(String inString, String outString, double temp ){
         double result = 0 ;
 
-        if(inString.equals("Fahrenheit") ){
-            if(outString.equals("Celsius" ) ){
-                result = fahrToCelsius(temp) ;
-            }
-            else if(outString.equals("Kelvin") ){
-                result = fahrToKelvin(temp) ;
-            }
-            else{
-                result = temp ;
-            }
+        public static double convertAll(String inString, String outString, double temp ){
 
-        }
-        else if(inString.equals("Celsius" ) ){
-            if(outString.equals("Fahrenheit" ) ){
-                result = celsiusToFahr(temp) ;
+            double result;
+            
+            if (inString.equalsIgnoreCase(outString)) {
+                return temp;
             }
-            else if(outString.equals("Kelvin") ){
-                result = celsiusToKelvin(temp) ;
+            if (inString.equalsIgnoreCase("kelvin")) {
+                if (outString.equalsIgnoreCase("celsius")) {
+                    result = kelvinToCelsius(temp);
+                }
+                else {
+                    result = kelvinToFahr(temp);
+                }
             }
-            else{
-                result = temp ;
-            }
-        }
-        else if(inString.equals("Kelvin") ){
-            if(outString.equals("Fahrenheit") ){
-                result = kelvinToFahr(temp) ;
-            }
-            else if(outString.equals("Celsius") ){
-                result = kelvinToCelsius(temp) ;
+            else if (inString.equalsIgnoreCase("celsius")) {
+                if (outString.equalsIgnoreCase("kelvin")) {
+                    result = celsiusToKelvin(temp);
+                }
+                else {
+                    result = celsiusToFahr(temp);
+                }
             }
             else {
-                result = temp ;
+                if (outString.equalsIgnoreCase("celsius")) {
+                    result = fahrToCelsius(temp);
+                }
+                else {
+                    result = fahrToKelvin(temp);
+                }
             }
+            return result ;
         }
-        return result ;
     }
 
     public static double celsiusToFahr( double t ){

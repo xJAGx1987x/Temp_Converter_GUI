@@ -3,11 +3,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class TempGUI extends JFrame {
-    private JComboBox<String> inputUnitsComboBox;
-    private JComboBox<String> outputUnitsComboBox;
-    private JTextField tempTextField;
-    private JButton convertButton;
-    private JTextField resultTextField;
+    private final JComboBox<String> inputUnitsComboBox;
+    private final JComboBox<String> outputUnitsComboBox;
+    private final JTextField tempTextField;
+    private final JButton convertButton;
+    private final JTextField resultTextField;
 
     public TempGUI() {
         // Set up the frame
@@ -19,14 +19,18 @@ public class TempGUI extends JFrame {
 
         // Create the components
         JLabel inputUnitsLabel = new JLabel("Input Units:");
+        inputUnitsLabel.setHorizontalAlignment(SwingConstants.CENTER);
         String[] inputUnits = {"Fahrenheit", "Celsius", "Kelvin"};
         inputUnitsComboBox = new JComboBox<>(inputUnits);
         JLabel outputUnitsLabel = new JLabel("Output Units:");
+        outputUnitsLabel.setHorizontalAlignment(SwingConstants.CENTER);
         String[] outputUnits = {"Fahrenheit", "Celsius", "Kelvin"};
         outputUnitsComboBox = new JComboBox<>(outputUnits);
-        JLabel tempLabel = new JLabel("Temperature:");
+        JLabel tempLabel = new JLabel("Temperature:") ;
+        tempLabel.setHorizontalAlignment(SwingConstants.CENTER);
         tempTextField = new JTextField();
         JLabel resultLabel = new JLabel("Result:");
+        resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
         resultTextField = new JTextField();
         resultTextField.setEditable(false);
         convertButton = new JButton("Convert");
@@ -50,6 +54,12 @@ public class TempGUI extends JFrame {
                 String inputUnits = (String) inputUnitsComboBox.getSelectedItem();
                 String outputUnits = (String) outputUnitsComboBox.getSelectedItem();
                 double temperature = Double.parseDouble(tempTextField.getText());
+                try {
+                    temperature = Double.parseDouble(tempTextField.getText());
+                } catch (NumberFormatException exception) {
+                    resultTextField.setText("Invalid input.");
+                    return;
+                }
                 double result = TempConverter.convertAll(inputUnits, outputUnits, temperature);
                 resultTextField.setText(String.format("%.2f", result));
             }

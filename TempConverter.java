@@ -11,24 +11,19 @@ public class TempConverter {
         if (inString.equalsIgnoreCase("kelvin")) {
             if (outString.equalsIgnoreCase("celsius")) {
                 result = kelvinToCelsius(temp);
-            }
-            else {
+            } else {
                 result = kelvinToFahr(temp);
             }
-        }
-        else if (inString.equalsIgnoreCase("celsius")) {
+        } else if (inString.equalsIgnoreCase("celsius")) {
             if (outString.equalsIgnoreCase("kelvin")) {
                 result = celsiusToKelvin(temp);
-            }
-            else {
+            } else {
                 result = celsiusToFahr(temp);
             }
-        }
-        else {
+        } else {
             if (outString.equalsIgnoreCase("celsius")) {
                 result = fahrToCelsius(temp);
-            }
-            else {
+            } else {
                 result = fahrToKelvin(temp);
             }
         }
